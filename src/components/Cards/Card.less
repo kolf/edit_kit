@@ -1,0 +1,56 @@
+.card {
+    border: 1px solid #e5e5e5;
+    padding: 5px 15px;
+    margin: 10px;
+    &:hover {
+        box-shadow: 4px 4px 40px rgba(0, 0, 6, 0.1);
+    }
+    &-line {
+        padding: 2px 0;
+        &-label {
+            font-weight: 700;
+            padding-right: 6px;
+        }
+        &-img {
+            height: 200px;
+            text-align: center;
+            padding: 6px 0;
+            display: block;
+            img {
+                max-width: 100%
+            }
+        }
+        &-desc {
+            height: 40px;
+            display: block
+        }
+        &-control {
+            overflow: hidden;
+        }
+        &-textarea {
+            textarea {
+                height: 82px !important;
+            }
+        }
+        &-tag {
+            padding: 4px;
+            border:  1px solid #e9e9e9;
+            display: block;
+            height: 82px;
+            border-radius: 2px;
+            overflow-y: auto;
+            .ant-tag{
+                margin: 1px
+            }
+        }
+    }
+    &-num {
+        text-align: right;
+        font-size: 2em;
+        font-weight: 700;
+        margin-right: -5px;
+    }
+    &.selected {
+        border-color: #b74635
+    }
+}
