@@ -5,7 +5,7 @@ import classnames from 'classnames'
 import './Card.less'
 import { Button, Input, Tag } from 'antd'
 
-const btnObj = {
+const btnMap = {
   edit: {
     icon: 'edit',
     title: '编审',
@@ -89,7 +89,7 @@ export const Card = ({ data, columns, index, btns, cardClass, update, tagsMap })
     <div className={classnames('card', cardClass, { selected: data.selected })}>
       {children}
       {(btns && btns.length > 0) && <div className='btns'>{btns.reduce((result, key) => {
-        const btn = btnObj[key]
+        const btn = btnMap[key]
         if (btn) {
           result.push(<Button onClick={() => { btn.click(data) }} icon={btn.icon} title={btn.title} />)
         }

@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Row, Col, Button, Input } from 'antd'
 import lodash from 'lodash'
+import getDevice from '../../utils/getDevice'
 import Pager from '../Pager'
 import Card from './Card'
 import './Cards.less'
@@ -25,10 +26,12 @@ class Cards extends React.Component {
 
   componentDidMount () {
     window.addEventListener('scroll', this.handelScroll, false)
+    window.addEventListener('resize', this.handelResize, false)
   }
 
   componentWillUnmount () {
     window.removeEventListener('scroll', this.handelScroll, false)
+    window.removeEventListener('resize', this.handelResize, false)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -39,12 +42,26 @@ class Cards extends React.Component {
     if (!lodash.isEqual(staticNextProps, otherProps)) {
       // this.props = nextProps
       this.setState({
-        dataSource: nextProps.dataSource,
+        dataSource: nextProps.dataSource
       })
     }
   }
 
+  handelResize = (e) => {
+    const rowsMap = {
+      sm: 2,
+      md: 4,
+      lg: 6,
+      xl: 8
+    }
+
+    this.setState({
+      rowSize: rowsMap[getDevice()]
+    })
+  }
+
   handelScroll = (e) => {
+    console.log(getDevice())
     const scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop
     const rowIndex = parseInt((scrollTop - containerTop) / 670)
     this.setState({ rowIndex })
@@ -96,6 +113,8 @@ class Cards extends React.Component {
   render () {
     const { columns, btns, page, cardClass, update, tagsMap} = this.props
     const { dataSource, rowIndex, rowSize } = this.state
+
+    console.log(this.props)
 
     const List = dataSource.filter((item, index) => {
       item.key = index

@@ -7,8 +7,12 @@ const mapDispatchToProps = {
   queryGroup
 }
 
-const mapStateToProps = (state) => ({
-  group : state.group
-})
+const mapStateToProps = (state) => {
+  return ({
+    group : state.group,
+    list : state.group.list,
+    tagsMap : state.group.tagsMap,
+  })
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Group)

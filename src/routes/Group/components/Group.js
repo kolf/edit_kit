@@ -2,8 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ImageList from '../../../components/Cards'
 
-export const Group = ({ group, queryGroup }) => {
+export const Group = ({ group, list, tagsMap, queryGroup }) => {
   console.log(group.tagsMap)
+  console.log(list)
+  console.log(tagsMap)
+  
   const listProps = {
     columns: [
       {
@@ -43,8 +46,8 @@ export const Group = ({ group, queryGroup }) => {
         placeholder: '',
       },
     ],
-    dataSource: group.list,
-    tagsMap: group.tagsMap,
+    dataSource: list,
+    tagsMap,
   }
 
   return (
@@ -55,6 +58,8 @@ export const Group = ({ group, queryGroup }) => {
 }
 Group.propTypes = {
   group: PropTypes.object.isRequired,
+  list: PropTypes.array.isRequired,
+  tagsMap: PropTypes.object,
   queryGroup: PropTypes.func.isRequired
 }
 
