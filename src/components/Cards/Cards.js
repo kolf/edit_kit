@@ -17,7 +17,7 @@ class Cards extends React.Component {
     const { dataSource } = props
     this.state = {
       rowIndex: 0,
-      rowSize: 8,
+      rowSize: 6,
       dataSource
     }
 
